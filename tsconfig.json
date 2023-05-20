@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true
+  },
+  "include": [
+    "app/**/*.{js,jsx,ts,tsx,cjs,cts,mjs,mts}",
+    "*.ts"
+  ]
+}
