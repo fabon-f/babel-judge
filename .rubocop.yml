@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - 'bin/{bundle,vite}'
+    - 'vendor/bin/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/bundle/**/*'
+
+Style/Documentation:
+  Enabled: false
