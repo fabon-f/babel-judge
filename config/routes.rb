@@ -8,4 +8,8 @@ Rails.application.routes.draw do
 
   get 'sign_up', to: 'users#new'
   resources :users, except: %i[index new]
+
+  get 'sign_in', to: 'user_sessions#new'
+  post 'sign_in', to: 'user_sessions#create'
+  get 'sign_out', to: 'user_sessions#destroy'
 end
