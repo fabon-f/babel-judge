@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'static_pages#index'
+
+  get 'sign_up', to: 'users#new'
+  resources :users, except: %i[index new]
 end

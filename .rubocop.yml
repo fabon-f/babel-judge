@@ -5,6 +5,10 @@ AllCops:
     - 'tmp/**/*'
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
+    - db/schema.rb
 
 Style/Documentation:
   Enabled: false
+
+Layout/HashAlignment:
+  EnforcedLastArgumentHashStyle: ignore_implicit
