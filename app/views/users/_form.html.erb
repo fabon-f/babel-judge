@@ -13,7 +13,7 @@
 
   <div>
     <div class="sm:flex">
-      <div class="block sm:w-1/3 px-4 sm:flex sm:justify-end sm:items-center">
+      <div class="block sm:w-1/3 sm:px-4 sm:flex sm:justify-end sm:items-center">
         <%= form.label :username, 'ユーザー名' %>
       </div>
       <%= form.text_field :username, class: 'rounded' %>
@@ -24,7 +24,7 @@
   </div>
 
   <div class="sm:flex">
-    <div class="block sm:w-1/3 px-4 sm:flex sm:justify-end sm:items-center">
+    <div class="block sm:w-1/3 sm:px-4 sm:flex sm:justify-end sm:items-center">
       <%= form.label :email, 'メールアドレス' %>
     </div>
     <%= form.text_field :email, placeholder: 'user@example.com', class: 'rounded' %>
@@ -32,7 +32,7 @@
 
   <div>
     <div class="sm:flex">
-      <div class="block sm:w-1/3 px-4 sm:flex sm:justify-end sm:items-center">
+      <div class="block sm:w-1/3 sm:px-4 sm:flex sm:justify-end sm:items-center">
         <%= form.label :password, 'パスワード' %>
       </div>
       <%= form.password_field :password, class: 'rounded' %>
@@ -43,7 +43,7 @@
   </div>
 
   <div class="sm:flex">
-    <div class="block sm:w-1/3 px-4 sm:flex sm:justify-end sm:items-center">
+    <div class="block sm:w-1/3 sm:px-4 sm:flex sm:justify-end sm:items-center">
       <%= form.label :password_confirmation, 'パスワード(確認)' %>
     </div>
     <%= form.password_field :password_confirmation, class: 'rounded' %>
