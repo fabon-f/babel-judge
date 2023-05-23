@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :password, length: { minimum: 8 }, confirmation: true,
     if: -> { new_record? || changes[:password_hash] }
+  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password_hash] }
 
   def to_param
     username
