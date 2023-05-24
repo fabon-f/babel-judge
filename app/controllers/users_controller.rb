@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
+    if @user.save(context: :password_auth)
       auto_login(@user)
       redirect_to user_url(@user), notice: 'ユーザー登録に成功しました。'
     else
