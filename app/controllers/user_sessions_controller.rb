@@ -11,7 +11,8 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_back_or_to :root, notice: 'ログインに成功しました。'
     else
-      redirect_to :sign_in, alert: 'ログインに失敗しました。'
+      flash.now[:alert] = 'ログインに失敗しました。'
+      render :new, status: :unprocessable_entity
     end
   end
 
