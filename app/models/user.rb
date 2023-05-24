@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :external_authentications, dependent: :destroy
+  accepts_nested_attributes_for :external_authentications
   authenticates_with_sorcery!
 
   validates :username, uniqueness: true, presence: true,
