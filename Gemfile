@@ -27,6 +27,7 @@ gem 'jbuilder'
 
 gem 'meta-tags'
 gem 'sorcery'
+gem 'view_component'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
