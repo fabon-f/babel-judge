@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   get 'sign_up', to: 'users#new'
-  resources :users, except: %i[index new]
+  resources :users, only: %i[show new create destroy]
 
   get 'sign_in', to: 'user_sessions#new'
   post 'sign_in', to: 'user_sessions#create'
   get 'sign_out', to: 'user_sessions#destroy'
+
+  resource :settings, only: %i[show update]
 end

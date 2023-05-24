@@ -15,7 +15,7 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'Login with incorrect password' do
     post sign_in_url, params: { username: 'test1', password: 'incorrect' }
-    assert_redirected_to sign_in_path
+    assert_response 422
   end
 
   test 'Logout' do

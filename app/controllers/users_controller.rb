@@ -9,8 +9,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit; end
-
   def create
     @user = User.new(user_params)
 
@@ -22,18 +20,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
-    if @user.update(user_params)
-      redirect_to user_url(@user), notice: 'User was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
+    logout
     @user.destroy
 
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to root_url, notice: 'アカウントを削除しました。'
   end
 
   private
