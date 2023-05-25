@@ -1,5 +1,5 @@
 <div class="mt-8 space-y-16 px-2 max-w-4xl mx-auto">
-  <h1 class="text-4xl">サインイン</h1>
+  <h1 class="text-4xl"><%= title 'サインイン' %></h1>
 
   <%= form_with(url: sign_in_path, method: :post, class: 'space-y-6') do |form| %>
     <div class="sm:flex">
@@ -22,5 +22,9 @@
   <div class="sm:w-2/3 sm:mr-0 ml-auto">
     <%= link_to 'GitHubアカウントでログイン', auth_at_provider_path(provider: :github),
       class: 'bg-slate-800 hover:bg-slate-600 text-white py-2 px-4 rounded cursor-pointer inline-block' %>
+  </div>
+
+  <div class="sm:w-2/3 sm:mr-0 ml-auto">
+    アカウントを持っていない：<%= link_to 'ユーザー登録', sign_up_path, class: 'text-blue-600 underline' %>
   </div>
 </div>

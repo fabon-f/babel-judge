@@ -1,6 +1,6 @@
 <div class="mt-8 space-y-16 px-2 max-w-4xl mx-auto">
   <section>
-    <h1 class="text-4xl">アカウント設定</h1>
+    <h1 class="text-4xl"><%= title 'アカウント設定' %></h1>
 
     <%= form_with(model: current_user, url: settings_path, class: 'space-y-6') do |form| %>
       <% if current_user.errors.any? %>
