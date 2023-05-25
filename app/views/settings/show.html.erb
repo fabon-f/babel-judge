@@ -1,77 +1,81 @@
-<div class="mt-8 space-y-6 px-2 max-w-4xl mx-auto">
-  <h1>アカウント設定</h1>
+<div class="mt-8 space-y-16 px-2 max-w-4xl mx-auto">
+  <section>
+    <h1 class="text-4xl">アカウント設定</h1>
 
-  <%= form_with(model: current_user, url: settings_path, class: 'space-y-6') do |form| %>
-    <% if current_user.errors.any? %>
-      <div class="text-red-600">
-        <h2><%= current_user.errors.count %>件のエラーが発生しました。</h2>
+    <%= form_with(model: current_user, url: settings_path, class: 'space-y-6') do |form| %>
+      <% if current_user.errors.any? %>
+        <div class="text-red-600">
+          <h2><%= current_user.errors.count %>件のエラーが発生しました。</h2>
 
-        <ul>
-          <% current_user.errors.each do |error| %>
-            <li class="list-disc list-inside"><%= error.full_message %></li>
-          <% end %>
-        </ul>
+          <ul>
+            <% current_user.errors.each do |error| %>
+              <li class="list-disc list-inside"><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= render HorizontalFormRowComponent.new do |component| %>
+        <% component.with_label do %>
+          <%= form.label :username, 'ユーザー名' %>
+        <% end %>
+        <% component.with_field do %>
+          <%= form.text_field :username, class: 'rounded' %>
+        <% end %>
+        <% component.with_description do %>
+          <div class="text-gray-800 text-sm">半角英数字とアンダースコア(<code>_</code>)のみが使用できます。</div>
+        <% end %>
+      <% end %>
+
+      <%= render HorizontalFormRowComponent.new do |component| %>
+        <% component.with_label do %>
+          <%= form.label :email, 'メールアドレス' %>
+        <% end %>
+        <% component.with_field do %>
+          <%= form.text_field :email, placeholder: 'user@example.com', class: 'rounded' %>
+        <% end %>
+      <% end %>
+
+      <div class="sm:flex justify-end">
+        <div class="sm:w-2/3">
+          <%= form.submit '更新', class: 'bg-blue-600 hover:bg-blue-400 text-white py-2 px-4 rounded cursor-pointer' %>
+        </div>
       </div>
     <% end %>
+  </section>
 
-    <%= render HorizontalFormRowComponent.new do |component| %>
-      <% component.with_label do %>
-        <%= form.label :username, 'ユーザー名' %>
-      <% end %>
-      <% component.with_field do %>
-        <%= form.text_field :username, class: 'rounded' %>
-      <% end %>
-      <% component.with_description do %>
-        <div class="text-gray-800 text-sm">半角英数字とアンダースコア(<code>_</code>)のみが使用できます。</div>
-      <% end %>
-    <% end %>
+  <section>
+    <h1 class="text-4xl">パスワード</h1>
 
-    <%= render HorizontalFormRowComponent.new do |component| %>
-      <% component.with_label do %>
-        <%= form.label :email, 'メールアドレス' %>
+    <%= form_with(model: current_user, url: settings_path, class: 'space-y-6') do |form| %>
+      <%= render HorizontalFormRowComponent.new do |component| %>
+        <% component.with_label do %>
+          <%= form.label :password, 'パスワード' %>
+        <% end %>
+        <% component.with_field do %>
+          <%= form.password_field :password, class: 'rounded' %>
+        <% end %>
+        <% component.with_description do %>
+          <div class="text-gray-800 text-sm">8文字以上</div>
+        <% end %>
       <% end %>
-      <% component.with_field do %>
-        <%= form.text_field :email, placeholder: 'user@example.com', class: 'rounded' %>
-      <% end %>
-    <% end %>
 
-    <div class="sm:flex justify-end">
-      <div class="sm:w-2/3">
-        <%= form.submit '更新', class: 'bg-blue-600 hover:bg-blue-400 text-white py-2 px-4 rounded cursor-pointer' %>
+      <%= render HorizontalFormRowComponent.new do |component| %>
+        <% component.with_label do %>
+          <%= form.label :password_confirmation, 'パスワード(確認)' %>
+        <% end %>
+        <% component.with_field do %>
+          <%= form.password_field :password_confirmation, class: 'rounded' %>
+        <% end %>
+      <% end %>
+
+      <div class="sm:flex justify-end">
+        <div class="sm:w-2/3">
+          <%= form.submit 'パスワードを更新', class: 'bg-blue-600 hover:bg-blue-400 text-white py-2 px-4 rounded cursor-pointer' %>
+        </div>
       </div>
-    </div>
-  <% end %>
-
-  <h1>パスワード</h1>
-
-  <%= form_with(model: current_user, url: settings_path, class: 'space-y-6') do |form| %>
-    <%= render HorizontalFormRowComponent.new do |component| %>
-      <% component.with_label do %>
-        <%= form.label :password, 'パスワード' %>
-      <% end %>
-      <% component.with_field do %>
-        <%= form.password_field :password, class: 'rounded' %>
-      <% end %>
-      <% component.with_description do %>
-        <div class="text-gray-800 text-sm">8文字以上</div>
-      <% end %>
     <% end %>
-
-    <%= render HorizontalFormRowComponent.new do |component| %>
-      <% component.with_label do %>
-        <%= form.label :password_confirmation, 'パスワード(確認)' %>
-      <% end %>
-      <% component.with_field do %>
-        <%= form.password_field :password_confirmation, class: 'rounded' %>
-      <% end %>
-    <% end %>
-
-    <div class="sm:flex justify-end">
-      <div class="sm:w-2/3">
-        <%= form.submit 'パスワードを更新', class: 'bg-blue-600 hover:bg-blue-400 text-white py-2 px-4 rounded cursor-pointer' %>
-      </div>
-    </div>
-  <% end %>
+  </section>
 
   <%= button_to 'アカウントを削除', current_user, method: :delete, data: { turbo_confirm: '本当に削除しますか?' },
     class: 'bg-red-600 hover:bg-red-400 text-white py-2 px-4 rounded cursor-pointer' %>

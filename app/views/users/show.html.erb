@@ -1,7 +1,9 @@
-<%= render @user %>
+<div class="mt-8 space-y-16 px-2 max-w-4xl mx-auto">
+  <div class="space-y-4">
+    <%= render @user %>
 
-<div>
-  <% if current_user == @user %>
-    <%= link_to 'プロフィールを編集', settings_path %>
-  <% end %>
+    <% if current_user == @user %>
+      <%= link_to 'アカウント設定', settings_path, class: 'border border-slate-400 bg-slate-50 hover:bg-slate-100 py-2 px-4 rounded cursor-pointer inline-block' %>
+    <% end %>
+  </div>
 </div>
