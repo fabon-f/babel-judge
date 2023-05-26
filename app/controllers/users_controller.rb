@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.merge({ primary_auth_method: :password }))
 
-    if @user.save(context: :password_auth)
+    if @user.save(context: :password_auth_registration)
       auto_login(@user)
       redirect_to user_url(@user), notice: 'ユーザー登録に成功しました。'
     else

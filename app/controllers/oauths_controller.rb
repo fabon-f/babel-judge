@@ -38,6 +38,7 @@ class OauthsController < ApplicationController
   def create_new_user(provider)
     @user = create_from(provider) do |user|
       user.username = 20.times.map { rand(36).to_s(36) }.join
+      user.oauth_auth!
     end
     reset_session
     auto_login(@user)

@@ -8,9 +8,10 @@ class SettingsController < ApplicationController
   end
 
   def update
+    @user = User.preload(:external_authentications).find(current_user.id)
     param_updates = profile_params
     param_updates.compact_blank! if param_updates[:password].nil?
-    if current_user.update(param_updates)
+    if @user.update(param_updates)
       redirect_to settings_url, notice: '更新しました。'
     else
       render :show, status: :unprocessable_entity
