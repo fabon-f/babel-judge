@@ -2,13 +2,13 @@
   <section>
     <h1 class="text-4xl"><%= title 'アカウント設定' %></h1>
 
-    <%= form_with(model: current_user, url: settings_path, class: 'space-y-6') do |form| %>
-      <% if current_user.errors.any? %>
+    <%= form_with(model: @user, url: settings_path, class: 'space-y-6') do |form| %>
+      <% if @user.errors.any? %>
         <div class="text-red-600">
-          <h2><%= current_user.errors.count %>件のエラーが発生しました。</h2>
+          <h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
 
           <ul>
-            <% current_user.errors.each do |error| %>
+            <% @user.errors.each do |error| %>
               <li class="list-disc list-inside"><%= error.full_message %></li>
             <% end %>
           </ul>
@@ -47,7 +47,7 @@
   <section>
     <h1 class="text-4xl">パスワード</h1>
 
-    <%= form_with(model: current_user, url: settings_path, class: 'space-y-6') do |form| %>
+    <%= form_with(model: @user, url: settings_path, class: 'space-y-6') do |form| %>
       <%= render HorizontalFormRowComponent.new do |component| %>
         <% component.with_label do %>
           <%= form.label :password, 'パスワード' %>
@@ -77,6 +77,15 @@
     <% end %>
   </section>
 
-  <%= button_to 'アカウントを削除', current_user, method: :delete, data: { turbo_confirm: '本当に削除しますか?' },
+  <section>
+    <h1 class="text-4xl">アカウント連携</h1>
+    <ul class="pl-4 mt-4">
+      <% @user.external_authentications.each do |auth| %>
+        <li class="list-disc list-inside"><%= auth.provider %></li>
+      <% end %>
+    </ul>
+  </section>
+
+  <%= button_to 'アカウントを削除', @user, method: :delete, data: { turbo_confirm: '本当に削除しますか?' },
     class: 'bg-red-600 hover:bg-red-400 text-white py-2 px-4 rounded cursor-pointer' %>
 </div>
