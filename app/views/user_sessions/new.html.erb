@@ -1,16 +1,24 @@
 <div class="mt-8 space-y-16 px-2 max-w-4xl mx-auto">
   <h1 class="text-4xl"><%= title 'サインイン' %></h1>
 
-  <%= form_with(url: sign_in_path, method: :post, class: 'space-y-6') do |form| %>
-    <div class="sm:flex">
-        <%= form.label :username, 'ユーザー名', class: 'block sm:w-1/3 sm:px-4 sm:flex sm:justify-end sm:items-center' %>
-      <%= form.text_field :username, class: 'rounded' %>
-    </div>
+  <%= form_with(url: sign_in_path, method: :post, class: 'space-y-6', builder: HorizontalFormBuilder) do |form| %>
+    <%= render HorizontalFormRowComponent.new do |component| %>
+      <% component.with_label do %>
+        <%= form.label :username, 'ユーザー名' %>
+      <% end %>
+      <% component.with_field do %>
+        <%= form.text_field :username, class: 'rounded' %>
+      <% end %>
+    <% end %>
 
-    <div class="sm:flex">
-      <%= form.label :password, 'パスワード', class: 'block sm:w-1/3 sm:px-4 sm:flex sm:justify-end sm:items-center' %>
-      <%= form.password_field :password, class: 'rounded' %>
-    </div>
+    <%= render HorizontalFormRowComponent.new do |component| %>
+      <% component.with_label do %>
+        <%= form.label :password, 'パスワード' %>
+      <% end %>
+      <% component.with_field do %>
+        <%= form.password_field :password, class: 'rounded' %>
+      <% end %>
+    <% end %>
 
     <div class="sm:flex justify-end">
       <div class="sm:w-2/3">

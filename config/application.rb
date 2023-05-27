@@ -20,5 +20,7 @@ module BabelJudge
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.action_view.field_error_proc = proc { |html_tag, _instance| html_tag }
   end
 end

@@ -2,19 +2,7 @@
   <section>
     <h1 class="text-4xl"><%= title 'アカウント設定' %></h1>
 
-    <%= form_with(model: @user, url: settings_path, class: 'space-y-6') do |form| %>
-      <% if @user.errors.any? %>
-        <div class="text-red-600">
-          <h2><%= @user.errors.count %>件のエラーが発生しました。</h2>
-
-          <ul>
-            <% @user.errors.each do |error| %>
-              <li class="list-disc list-inside"><%= error.full_message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
+    <%= form_with(model: @user, url: settings_path, builder: HorizontalFormBuilder, class: 'space-y-6') do |form| %>
       <%= render HorizontalFormRowComponent.new do |component| %>
         <% component.with_label do %>
           <%= form.label :username, 'ユーザー名' %>
@@ -23,6 +11,7 @@
           <%= form.text_field :username, class: 'rounded' %>
         <% end %>
         <% component.with_description do %>
+          <%= form.error_message :username %>
           <div class="text-gray-800 text-sm">半角英数字とアンダースコア(<code>_</code>)のみが使用できます。</div>
         <% end %>
       <% end %>
@@ -32,7 +21,10 @@
           <%= form.label :email, 'メールアドレス' %>
         <% end %>
         <% component.with_field do %>
-          <%= form.text_field :email, placeholder: 'user@example.com', class: 'rounded' %>
+          <%= form.email_field :email, placeholder: 'user@example.com', class: 'rounded' %>
+        <% end %>
+        <% component.with_description do %>
+          <%= form.error_message :email %>
         <% end %>
       <% end %>
 
@@ -47,7 +39,7 @@
   <section>
     <h1 class="text-4xl">パスワード</h1>
 
-    <%= form_with(model: @user, url: settings_path, class: 'space-y-6') do |form| %>
+    <%= form_with(model: @user, url: settings_path, builder: HorizontalFormBuilder, class: 'space-y-6') do |form| %>
       <%= render HorizontalFormRowComponent.new do |component| %>
         <% component.with_label do %>
           <%= form.label :password, 'パスワード' %>
@@ -56,6 +48,7 @@
           <%= form.password_field :password, class: 'rounded' %>
         <% end %>
         <% component.with_description do %>
+          <%= form.error_message :password %>
           <div class="text-gray-800 text-sm">8文字以上</div>
         <% end %>
       <% end %>
@@ -66,6 +59,9 @@
         <% end %>
         <% component.with_field do %>
           <%= form.password_field :password_confirmation, class: 'rounded' %>
+        <% end %>
+        <% component.with_description do %>
+          <%= form.error_message :password_confirmation %>
         <% end %>
       <% end %>
 
