@@ -6,6 +6,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
     - db/schema.rb
+    - .irbrc
 
 Style/Documentation:
   Enabled: false

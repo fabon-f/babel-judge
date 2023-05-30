@@ -58,7 +58,11 @@ end
 
 group :development do
   gem 'foreman'
+  gem 'katakata_irb', require: false
+  gem 'rbs', '>= 3.1.0', require: false
+  gem 'rbs_rails', require: false
   gem 'rubocop', require: false
+  gem 'steep', require: false
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'

@@ -44,3 +44,7 @@ node_modules
 *.local
 
 vendor/bin
+
+/.gem_rbs_collection/
+/rbs_collection.lock.yaml
+/sig/rbs_rails
